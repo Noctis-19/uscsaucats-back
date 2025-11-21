@@ -26,6 +26,9 @@
         "videos",
         "audios"
       ]
+    },
+    "date": {
+      "type": "date"
     }
   }
 }
