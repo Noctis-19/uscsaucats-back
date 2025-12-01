@@ -1,0 +1,48 @@
+{
+  "kind": "collectionType",
+  "collectionName": "entrainements_lignes",
+  "info": {
+    "singularName": "entrainements-ligne",
+    "pluralName": "entrainements-lignes",
+    "displayName": "Entraînements ligne"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "categorie": {
+      "type": "string",
+      "required": true
+    },
+    "naissance": {
+      "type": "string",
+      "required": true
+    },
+    "jours": {
+      "type": "string",
+      "required": true
+    },
+    "horaires": {
+      "type": "string",
+      "required": true
+    },
+    "entraineurs": {
+      "type": "string",
+      "required": true
+    },
+    "reprise": {
+      "type": "string",
+      "required": true
+    },
+    "tarifs": {
+      "type": "string",
+      "required": true
+    },
+    "ordre": {
+      "type": "integer",
+      "required": true,
+      "unique": true
+    }
+  }
+}
