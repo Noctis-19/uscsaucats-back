@@ -535,6 +535,41 @@ export interface ApiEntrainementsLigneEntrainementsLigne
   };
 }
 
+export interface ApiEvenementEvenement extends Struct.CollectionTypeSchema {
+  collectionName: 'evenements';
+  info: {
+    displayName: 'Evenement';
+    pluralName: 'evenements';
+    singularName: 'evenement';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    annee: Schema.Attribute.Integer & Schema.Attribute.Required;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    date: Schema.Attribute.Date;
+    description: Schema.Attribute.Blocks & Schema.Attribute.Required;
+    images: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::evenement.evenement'
+    > &
+      Schema.Attribute.Private;
+    nom: Schema.Attribute.String & Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiFooterFooter extends Struct.SingleTypeSchema {
   collectionName: 'footers';
   info: {
@@ -1205,6 +1240,7 @@ declare module '@strapi/strapi' {
       'api::accueil.accueil': ApiAccueilAccueil;
       'api::actualite.actualite': ApiActualiteActualite;
       'api::entrainements-ligne.entrainements-ligne': ApiEntrainementsLigneEntrainementsLigne;
+      'api::evenement.evenement': ApiEvenementEvenement;
       'api::footer.footer': ApiFooterFooter;
       'api::galerie-accueil.galerie-accueil': ApiGalerieAccueilGalerieAccueil;
       'api::info-club.info-club': ApiInfoClubInfoClub;
