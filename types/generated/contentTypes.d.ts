@@ -497,6 +497,75 @@ export interface ApiActualiteActualite extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiCompetitionCompetition extends Struct.CollectionTypeSchema {
+  collectionName: 'competitions';
+  info: {
+    displayName: 'Competition';
+    pluralName: 'competitions';
+    singularName: 'competition';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    annee: Schema.Attribute.Integer & Schema.Attribute.Required;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    date: Schema.Attribute.Date;
+    description: Schema.Attribute.Blocks & Schema.Attribute.Required;
+    images: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::competition.competition'
+    > &
+      Schema.Attribute.Private;
+    map: Schema.Attribute.String;
+    nom: Schema.Attribute.String & Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiContactContact extends Struct.SingleTypeSchema {
+  collectionName: 'contacts';
+  info: {
+    displayName: 'Contact';
+    pluralName: 'contacts';
+    singularName: 'contact';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    adresse: Schema.Attribute.String;
+    contenu: Schema.Attribute.Blocks & Schema.Attribute.Required;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    email: Schema.Attribute.String;
+    facebook: Schema.Attribute.String;
+    instagram: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::contact.contact'
+    > &
+      Schema.Attribute.Private;
+    map: Schema.Attribute.String & Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiEntrainementsLigneEntrainementsLigne
   extends Struct.CollectionTypeSchema {
   collectionName: 'entrainements_lignes';
@@ -563,37 +632,6 @@ export interface ApiEvenementEvenement extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     nom: Schema.Attribute.String & Schema.Attribute.Required;
-    publishedAt: Schema.Attribute.DateTime;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
-export interface ApiFooterFooter extends Struct.SingleTypeSchema {
-  collectionName: 'footers';
-  info: {
-    displayName: 'Footer';
-    pluralName: 'footers';
-    singularName: 'footer';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    adresse: Schema.Attribute.Text;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    email: Schema.Attribute.String;
-    facebook: Schema.Attribute.String;
-    instagram: Schema.Attribute.String;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::footer.footer'
-    > &
-      Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -1239,9 +1277,10 @@ declare module '@strapi/strapi' {
       'admin::user': AdminUser;
       'api::accueil.accueil': ApiAccueilAccueil;
       'api::actualite.actualite': ApiActualiteActualite;
+      'api::competition.competition': ApiCompetitionCompetition;
+      'api::contact.contact': ApiContactContact;
       'api::entrainements-ligne.entrainements-ligne': ApiEntrainementsLigneEntrainementsLigne;
       'api::evenement.evenement': ApiEvenementEvenement;
-      'api::footer.footer': ApiFooterFooter;
       'api::galerie-accueil.galerie-accueil': ApiGalerieAccueilGalerieAccueil;
       'api::info-club.info-club': ApiInfoClubInfoClub;
       'api::lien-inscription.lien-inscription': ApiLienInscriptionLienInscription;

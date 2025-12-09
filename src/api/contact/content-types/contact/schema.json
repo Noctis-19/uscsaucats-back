@@ -1,0 +1,37 @@
+{
+  "kind": "singleType",
+  "collectionName": "contacts",
+  "info": {
+    "singularName": "contact",
+    "pluralName": "contacts",
+    "displayName": "Contact"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "email": {
+      "type": "string",
+      "required": false
+    },
+    "instagram": {
+      "type": "string",
+      "required": false
+    },
+    "facebook": {
+      "type": "string"
+    },
+    "adresse": {
+      "type": "string"
+    },
+    "contenu": {
+      "type": "blocks",
+      "required": true
+    },
+    "map": {
+      "type": "string",
+      "required": true
+    }
+  }
+}
