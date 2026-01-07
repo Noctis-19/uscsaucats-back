@@ -566,6 +566,39 @@ export interface ApiContactContact extends Struct.SingleTypeSchema {
   };
 }
 
+export interface ApiEncadrantEncadrant extends Struct.CollectionTypeSchema {
+  collectionName: 'encadrants';
+  info: {
+    displayName: 'Encadrant';
+    pluralName: 'encadrants';
+    singularName: 'encadrant';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::encadrant.encadrant'
+    > &
+      Schema.Attribute.Private;
+    nom: Schema.Attribute.String & Schema.Attribute.Required;
+    ordre: Schema.Attribute.Integer &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
+    poste: Schema.Attribute.String & Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiEntrainementsLigneEntrainementsLigne
   extends Struct.CollectionTypeSchema {
   collectionName: 'entrainements_lignes';
@@ -724,6 +757,40 @@ export interface ApiLienInscriptionLienInscription
       'api::lien-inscription.lien-inscription'
     > &
       Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiOrganigrammeOrganigramme
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'organigrammes';
+  info: {
+    displayName: 'Organigramme';
+    pluralName: 'organigrammes';
+    singularName: 'organigramme';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::organigramme.organigramme'
+    > &
+      Schema.Attribute.Private;
+    nom: Schema.Attribute.String & Schema.Attribute.Required;
+    ordre: Schema.Attribute.Integer &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
+    poste: Schema.Attribute.String & Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -1279,11 +1346,13 @@ declare module '@strapi/strapi' {
       'api::actualite.actualite': ApiActualiteActualite;
       'api::competition.competition': ApiCompetitionCompetition;
       'api::contact.contact': ApiContactContact;
+      'api::encadrant.encadrant': ApiEncadrantEncadrant;
       'api::entrainements-ligne.entrainements-ligne': ApiEntrainementsLigneEntrainementsLigne;
       'api::evenement.evenement': ApiEvenementEvenement;
       'api::galerie-accueil.galerie-accueil': ApiGalerieAccueilGalerieAccueil;
       'api::info-club.info-club': ApiInfoClubInfoClub;
       'api::lien-inscription.lien-inscription': ApiLienInscriptionLienInscription;
+      'api::organigramme.organigramme': ApiOrganigrammeOrganigramme;
       'api::partenaire.partenaire': ApiPartenairePartenaire;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;

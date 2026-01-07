@@ -1,0 +1,38 @@
+{
+  "kind": "collectionType",
+  "collectionName": "encadrants",
+  "info": {
+    "singularName": "encadrant",
+    "pluralName": "encadrants",
+    "displayName": "Encadrant"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "ordre": {
+      "type": "integer",
+      "required": true,
+      "unique": true
+    },
+    "poste": {
+      "type": "string",
+      "required": true
+    },
+    "nom": {
+      "type": "string",
+      "required": true
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    }
+  }
+}
