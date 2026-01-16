@@ -430,6 +430,38 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiAccesInterneAccesInterne extends Struct.SingleTypeSchema {
+  collectionName: 'acces_internes';
+  info: {
+    displayName: 'Acces-interne';
+    pluralName: 'acces-internes';
+    singularName: 'acces-interne';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    actif: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<false>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    identifiant: Schema.Attribute.String & Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::acces-interne.acces-interne'
+    > &
+      Schema.Attribute.Private;
+    motdepasse: Schema.Attribute.String & Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiAccueilAccueil extends Struct.SingleTypeSchema {
   collectionName: 'accueils';
   info: {
@@ -1342,6 +1374,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::acces-interne.acces-interne': ApiAccesInterneAccesInterne;
       'api::accueil.accueil': ApiAccueilAccueil;
       'api::actualite.actualite': ApiActualiteActualite;
       'api::competition.competition': ApiCompetitionCompetition;
