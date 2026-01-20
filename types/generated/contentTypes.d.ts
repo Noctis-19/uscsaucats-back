@@ -700,6 +700,10 @@ export interface ApiEvenementEvenement extends Struct.CollectionTypeSchema {
       'api::evenement.evenement'
     > &
       Schema.Attribute.Private;
+    messages_evenement: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::message-evenement.message-evenement'
+    >;
     nom: Schema.Attribute.String & Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
@@ -823,6 +827,40 @@ export interface ApiMessageCompetitionMessageCompetition
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::message-competition.message-competition'
+    > &
+      Schema.Attribute.Private;
+    message: Schema.Attribute.Text & Schema.Attribute.Required;
+    nom: Schema.Attribute.String & Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiMessageEvenementMessageEvenement
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'messages_evenements';
+  info: {
+    displayName: 'Messages \u00E9v\u00E8nement';
+    pluralName: 'messages-evenements';
+    singularName: 'message-evenement';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    evenement: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::evenement.evenement'
+    >;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::message-evenement.message-evenement'
     > &
       Schema.Attribute.Private;
     message: Schema.Attribute.Text & Schema.Attribute.Required;
@@ -1424,6 +1462,7 @@ declare module '@strapi/strapi' {
       'api::info-club.info-club': ApiInfoClubInfoClub;
       'api::lien-inscription.lien-inscription': ApiLienInscriptionLienInscription;
       'api::message-competition.message-competition': ApiMessageCompetitionMessageCompetition;
+      'api::message-evenement.message-evenement': ApiMessageEvenementMessageEvenement;
       'api::organigramme.organigramme': ApiOrganigrammeOrganigramme;
       'api::partenaire.partenaire': ApiPartenairePartenaire;
       'plugin::content-releases.release': PluginContentReleasesRelease;

@@ -1,0 +1,29 @@
+{
+  "kind": "collectionType",
+  "collectionName": "messages_evenements",
+  "info": {
+    "singularName": "message-evenement",
+    "pluralName": "messages-evenements",
+    "displayName": "Messages évènement"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "evenement": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::evenement.evenement",
+      "inversedBy": "messages_evenement"
+    },
+    "nom": {
+      "type": "string",
+      "required": true
+    },
+    "message": {
+      "type": "text",
+      "required": true
+    }
+  }
+}

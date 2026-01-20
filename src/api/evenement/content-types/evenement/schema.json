@@ -35,6 +35,12 @@
     },
     "date": {
       "type": "date"
+    },
+    "messages_evenement": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::message-evenement.message-evenement",
+      "mappedBy": "evenement"
     }
   }
 }
