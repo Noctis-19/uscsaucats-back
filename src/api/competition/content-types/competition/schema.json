@@ -38,6 +38,12 @@
     },
     "map": {
       "type": "string"
+    },
+    "messages_competition": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::message-competition.message-competition",
+      "mappedBy": "competition"
     }
   }
 }

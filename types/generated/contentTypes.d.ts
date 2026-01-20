@@ -557,6 +557,10 @@ export interface ApiCompetitionCompetition extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     map: Schema.Attribute.String;
+    messages_competition: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::message-competition.message-competition'
+    >;
     nom: Schema.Attribute.String & Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
@@ -789,6 +793,40 @@ export interface ApiLienInscriptionLienInscription
       'api::lien-inscription.lien-inscription'
     > &
       Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiMessageCompetitionMessageCompetition
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'messages_competition';
+  info: {
+    displayName: 'Messages comp\u00E9tition';
+    pluralName: 'messages-competition';
+    singularName: 'message-competition';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    competition: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::competition.competition'
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::message-competition.message-competition'
+    > &
+      Schema.Attribute.Private;
+    message: Schema.Attribute.Text & Schema.Attribute.Required;
+    nom: Schema.Attribute.String & Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -1385,6 +1423,7 @@ declare module '@strapi/strapi' {
       'api::galerie-accueil.galerie-accueil': ApiGalerieAccueilGalerieAccueil;
       'api::info-club.info-club': ApiInfoClubInfoClub;
       'api::lien-inscription.lien-inscription': ApiLienInscriptionLienInscription;
+      'api::message-competition.message-competition': ApiMessageCompetitionMessageCompetition;
       'api::organigramme.organigramme': ApiOrganigrammeOrganigramme;
       'api::partenaire.partenaire': ApiPartenairePartenaire;
       'plugin::content-releases.release': PluginContentReleasesRelease;
