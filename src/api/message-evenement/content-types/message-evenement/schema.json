@@ -1,9 +1,9 @@
 {
   "kind": "collectionType",
-  "collectionName": "messages_evenements",
+  "collectionName": "messages_evenement",
   "info": {
     "singularName": "message-evenement",
-    "pluralName": "messages-evenements",
+    "pluralName": "messages-evenement",
     "displayName": "Messages évènement"
   },
   "options": {

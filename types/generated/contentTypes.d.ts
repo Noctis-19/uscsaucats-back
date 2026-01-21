@@ -840,10 +840,10 @@ export interface ApiMessageCompetitionMessageCompetition
 
 export interface ApiMessageEvenementMessageEvenement
   extends Struct.CollectionTypeSchema {
-  collectionName: 'messages_evenements';
+  collectionName: 'messages_evenement';
   info: {
     displayName: 'Messages \u00E9v\u00E8nement';
-    pluralName: 'messages-evenements';
+    pluralName: 'messages-evenement';
     singularName: 'message-evenement';
   };
   options: {
