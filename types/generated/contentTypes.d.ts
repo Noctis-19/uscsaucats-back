@@ -712,38 +712,6 @@ export interface ApiEvenementEvenement extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiGalerieAccueilGalerieAccueil
-  extends Struct.SingleTypeSchema {
-  collectionName: 'galeries_accueil';
-  info: {
-    displayName: 'Galerie accueil';
-    pluralName: 'galeries-accueil';
-    singularName: 'galerie-accueil';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    images: Schema.Attribute.Media<
-      'images' | 'files' | 'videos' | 'audios',
-      true
-    >;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::galerie-accueil.galerie-accueil'
-    > &
-      Schema.Attribute.Private;
-    publishedAt: Schema.Attribute.DateTime;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
 export interface ApiInfoClubInfoClub extends Struct.CollectionTypeSchema {
   collectionName: 'infos_club';
   info: {
@@ -1458,7 +1426,6 @@ declare module '@strapi/strapi' {
       'api::encadrant.encadrant': ApiEncadrantEncadrant;
       'api::entrainements-ligne.entrainements-ligne': ApiEntrainementsLigneEntrainementsLigne;
       'api::evenement.evenement': ApiEvenementEvenement;
-      'api::galerie-accueil.galerie-accueil': ApiGalerieAccueilGalerieAccueil;
       'api::info-club.info-club': ApiInfoClubInfoClub;
       'api::lien-inscription.lien-inscription': ApiLienInscriptionLienInscription;
       'api::message-competition.message-competition': ApiMessageCompetitionMessageCompetition;
