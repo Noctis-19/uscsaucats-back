@@ -556,7 +556,7 @@ export interface ApiCompetitionCompetition extends Struct.CollectionTypeSchema {
       'api::competition.competition'
     > &
       Schema.Attribute.Private;
-    map: Schema.Attribute.String;
+    map: Schema.Attribute.Text;
     messages_competition: Schema.Attribute.Relation<
       'oneToMany',
       'api::message-competition.message-competition'
@@ -594,7 +594,7 @@ export interface ApiContactContact extends Struct.SingleTypeSchema {
       'api::contact.contact'
     > &
       Schema.Attribute.Private;
-    map: Schema.Attribute.String & Schema.Attribute.Required;
+    map: Schema.Attribute.Text & Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &

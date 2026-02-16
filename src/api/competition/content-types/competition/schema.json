@@ -37,7 +37,7 @@
       "type": "date"
     },
     "map": {
-      "type": "string"
+      "type": "text"
     },
     "messages_competition": {
       "type": "relation",

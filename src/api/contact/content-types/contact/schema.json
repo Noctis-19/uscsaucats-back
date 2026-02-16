@@ -30,7 +30,7 @@
       "required": true
     },
     "map": {
-      "type": "string",
+      "type": "text",
       "required": true
     }
   }
